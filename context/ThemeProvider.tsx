@@ -11,8 +11,8 @@ import {
 } from "react";
 
 type ThemeContextType = {
-    mode: string;
-    setMode: Dispatch<SetStateAction<string>>;
+    mode: "light" | "dark" | "system";
+    setMode: Dispatch<SetStateAction<"light" | "dark" | "system">>;
 };
 
 type ThemeProviderProps = {
@@ -21,15 +21,19 @@ type ThemeProviderProps = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState<"light" | "dark" | "system">("system");
 
     const handleThemeChange = () => {
-        if (mode === "dark") {
-            setMode("light");
-            document.documentElement.classList.add("light");
-        } else {
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
             setMode("dark");
             document.documentElement.classList.add("dark");
+        } else {
+            setMode("light");
+            document.documentElement.classList.remove("dark");
         }
     };
 

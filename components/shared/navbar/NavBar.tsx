@@ -2,6 +2,8 @@ import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Theme from "./Theme";
+import MobileNav from "./MobileNav";
 
 const NavBar = () => {
     return (
@@ -19,7 +21,7 @@ const NavBar = () => {
             </Link>
             GlobalSearch
             <div className="flex-between gap-5">
-                Theme
+                <Theme />
                 <SignedIn>
                     <UserButton
                         afterSignOutUrl="/"
@@ -32,6 +34,7 @@ const NavBar = () => {
                 <SignedOut>
                     <SignInButton>Login</SignInButton>
                 </SignedOut>
+                <MobileNav />
             </div>
         </div>
     );
