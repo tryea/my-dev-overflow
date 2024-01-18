@@ -32,7 +32,9 @@ const NavBar = () => {
                     />
                 </SignedIn>
                 <SignedOut>
-                    <SignInButton>Login</SignInButton>
+                    <div className="hidden sm:block">
+                        <SignInButton>Login</SignInButton>
+                    </div>
                 </SignedOut>
                 <MobileNav />
             </div>
