@@ -1,10 +1,13 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {};
 
 const GlobalSearch = (props: Props) => {
+    const [searchQuery, setSearchQuery] = useState<string>("");
     return (
         <div className="relative w-full  max-w-[600px] max-lg:hidden">
             <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-2 rounded-xl px-4">
@@ -18,7 +21,10 @@ const GlobalSearch = (props: Props) => {
                 <Input
                     type="text"
                     placeholder="Search globally"
-                    value=""
+                    value={searchQuery}
+                    onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                    }}
                     className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
                 />
             </div>
